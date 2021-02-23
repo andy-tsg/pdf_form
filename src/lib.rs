@@ -295,9 +295,9 @@ impl Form {
             },
             FieldType::CheckBox => FieldState::CheckBox {
                 is_checked: match field.get(b"V") {
-                    Ok(name) => name.as_name_str().unwrap() == "Yes",
+                    Ok(name) => ["Yes", "On"].contains(&name.as_name_str().unwrap()),
                     _ => match field.get(b"AS") {
-                        Ok(name) => name.as_name_str().unwrap() == "Yes",
+                        Ok(name) => ["Yes", "On"].contains(&name.as_name_str().unwrap()),
                         _ => false,
                     },
                 },
